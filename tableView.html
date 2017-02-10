@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Table</title>
+	<link rel="stylesheet" type="text/css" href="static/tableView.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+
+	<div id="people" class="container">
+
+	  <h1> Log List </h1>
+	  <div class="alphabet-filter">
+	  
+	    <!-- <button class="btn btn-default" :class="{active:letter==selectedLetter}" v-for="letter in letters" @click="alphabetFilter(letter)">{{letter}}</button>
+	    <button class="btn btn-default" @click="alphabetFilter('')">Clear</button> -->
+	  </div>
+	  
+	  <v-client-table :data="tableData" :columns="columns" :options="options"></v-client-table>
+	  
+	</div>
+	<script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
+	<script type="text/javascript" src="https://rawgit.com/matfish2/vue-tables/master/dist/vue-tables.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.17/daterangepicker.min.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.17/daterangepicker.min.js"></script>
+	<script type="text/javascript" src="static/tableView.js"></script>
+
+
+</body>
+</html>
