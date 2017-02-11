@@ -9,9 +9,9 @@ Vue.use(VueTables.client, {
   texts: {
     filter: "Search:"
   },
-  datepickerOptions: {
-    showDropdowns: true
-  }
+  // datepickerOptions: {
+  //   showDropdowns: true
+  // }
   
 });
 
@@ -23,18 +23,18 @@ var app = new Vue({
       console.log(row);
     });
     $.ajax({
-      url : 'http://api3.dev/queues',
+      url : 'http://api3.dev/queues/All',
       method : 'GET',
       headers: {
         'access-token' : '$2b$12$HIygWiqETjHpyZAVAIgi3eZK2jOJbWL6fBHbMPJXWrWwtPJhP3.Fu'
       },
       success: function(response){
-        app.keys = response['data'];
-        for (var i = app.keys.length - 1; i >= 0; i--) {
+
+        console.log(response['data'][0]);
+        app.keys = response['data'][0];
+        for (var i = 0; i < app.keys.length; i++) 
           app.options.listColumns.status.push({id: i, text: app.keys[i]});
-        }
-        console.log(response['data']);
-        
+                
       }
     });
   },
@@ -51,13 +51,13 @@ var app = new Vue({
     },
   },
   data: {
-    columns: ['name', 'status', 'birth_date'],
+    columns: ['name', 'status', 'CreatedAt'],
     keys :'', 
     options: {
-      dateColumns: ['birth_date'],
+      dateColumns: ['CreatedAt'],
       headings: {
         name: 'Name',
-        birth_date: 'Birth Date',
+        CreatedAt: 'CreatedAt',
         age: 'Age',
         edit: 'Edit',
         delete: 'Delete'
