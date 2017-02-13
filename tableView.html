@@ -10,14 +10,40 @@
 
 	<div id="people" class="container">
 
+
 	  <h1> Log List </h1>
-	  <div class="alphabet-filter">
-	  
-	    <!-- <button class="btn btn-default" :class="{active:letter==selectedLetter}" v-for="letter in letters" @click="alphabetFilter(letter)">{{letter}}</button>
-	    <button class="btn btn-default" @click="alphabetFilter('')">Clear</button> -->
+	  <!--<div class="alphabet-filter">
+	     <button class="btn btn-default" :class="{active:letter==selectedLetter}" v-for="letter in letters" @click="alphabetFilter(letter)">{{letter}}</button>
+	    <button class="btn btn-default" @click="alphabetFilter('')">Clear</button> 
+	  </div>-->
+	  <div>
+	  	<table class="table table-striped">
+			<tr>
+				<th>App Name</th>
+				<th>Creator</th>
+				<th>Created At</th>
+				<th>
+					<select id="class_name">
+						<option v-for="option in keys" >{{option}}</option>
+					</select>	
+				</th>
+			</tr>
+			<tbody v-for="obj in tableDatas">
+				<tr class="tbodyRow" onclick="toggleFunc('{{obj.meta.id}}')">
+					<td>{{obj.appName}}</td>
+					<td>{{obj.actor.displayName}}</td>
+					<td>{{obj.createdAt}}</td>
+					<td>{{obj.queueName}}</td>
+				</tr>
+				<tr style="display: none;" id="{{obj.meta.id}}">
+					<td colspan="4"><pre>{{obj|json}}</pre></td>
+				</tr>
+			</tbody>	
+		
+		</table>
 	  </div>
 	  
-	  <v-client-table :data="tableData" :columns="columns" :options="options"></v-client-table>
+	  <!-- <v-client-table :data="tableData" :columns="columns" :options="options"></v-client-table> -->
 	  
 	</div>
 	<script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
