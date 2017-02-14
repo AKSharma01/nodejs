@@ -33,7 +33,12 @@ function api_call(response) {
   console.log(response['data']);
   // console.log(response['data'][0]);
   app.option = response.data.keys;
-  
+  console.log(response.data.keysLength.length);
+  for(var i=0; i< response.data.keysLength.length; i++){
+    console.log(response.data.keysLength);
+  }
+    // console.log(app.pages);
+    // response.data.keysLength;
   for (var i = 0; i < app.option.length; i++) 
     app.keys.push(app.option[i]);
   
@@ -44,25 +49,13 @@ function api_call(response) {
 }
 
 
-// Vue.use(VueTables.client, {
-//   compileTemplates: true,
-//   //highlightMatches: true,
-//   //pagination: {
-//   // dropdown:true
-//   // chunk:5
-//   // },
-//   filterByColumn: true,
-  
-//   // datepickerOptions: {
-//   //   showDropdowns: true
-//   // }
-  
-// });
+
 
 var app = new Vue({
   el: "#people",
   ready: function() {
     // console.log(app.keys);
+
     $("#class_name").change(function(){
       var selected_option=$("#class_name").val();
       //alert(""+class_id);
@@ -93,13 +86,26 @@ var app = new Vue({
     });
   },
   methods :{
+    say: function (pageNo,selected_option) {
+      $.ajax({
+        url : 'http://api3.dev/queues/'+selected_option+'/'+((pageNo*5)+1),
+        method : 'GET',
+        headers: {
+          'access-token' : '$2b$12$Z63ZvLoJSH/bFR3Rw2fnieY7Lk2vlC5sbya4x5b7gxeChhwjbHI.u'
+        },
+        success: function(response){
+          api_call(response);
 
+        }
+      });
+    }
   },
 
   data: {
     option : '',
     keys :['All'], 
     tableDatas : [],
+    pages : ''
   }
 });
 
@@ -188,3 +194,19 @@ function randomOption() {
     // letters: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
     // selectedLetter: '',
     // averageAge: 0,
+
+
+// Vue.use(VueTables.client, {
+//   compileTemplates: true,
+//   //highlightMatches: true,
+//   //pagination: {
+//   // dropdown:true
+//   // chunk:5
+//   // },
+//   filterByColumn: true,
+  
+//   // datepickerOptions: {
+//   //   showDropdowns: true
+//   // }
+  
+// });
